@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESIGNATION // PROJECT_2 - Elegant Cybernetic Portfolio</title>
+    <meta name="description" content="Personal portfolio of a creative full-stack engineer. Interactive 3D robot head-tracking, CV download, qualifications timeline, and projects.">
+    <!-- Google Fonts: Outfit (Primary & Headers), Share Tech Mono (Tech Accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="elegant-deck">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-logo">
+            <svg class="logo-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
+                <polyline points="12 22 12 12 22 8.5" />
+                <polyline points="12 12 2 8.5" />
+            </svg>
+            <span class="logo-text">CHETHIYALIVE</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#about" class="nav-item">ABOUT</a>
+            <a href="#qualifications" class="nav-item">ACADEMICS</a>
+            <a href="#skills" class="nav-item">SPECS</a>
+            <a href="#projects" class="nav-item">WORK</a>
+            <a href="#contact" class="nav-item">COMMS</a>
+        </nav>
+        <div class="nav-controls">
+            <!-- Header Social Subnets: FB, IG, LinkedIn, GitHub -->
+            <div class="header-socials">
+                <a href="https://www.facebook.com/chethiya.samaradiwakara.2025/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/chethiy_a/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://github.com/Chethiya4" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <button class="sound-toggle-btn" id="sound-toggle" aria-label="Toggle sound feedback">
+                <svg class="sound-icon on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <svg class="sound-icon off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+            </button>
+            <span class="sys-state-dot"><span class="dot"></span>ACTIVE</span>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="page-container">
+        
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-grid">
+                <div class="hero-text-area">
+                    <div class="hero-tag">[ OPERATOR // SYSTEM PROFILE ]</div>
+                    <h1 class="hero-heading">Undergraduate at   <span class="text-glow-cyan">University of Sri Jayewardenepura</span> </h1>
+                    <p class="hero-desc">
+                        I am an undergraduate at University of Sri Jayewardenepura with a strong enthusiasm for technology, innovation, and professional growth. As an IEEE volunteer, I actively engage in collaborative initiatives, events, and projects that foster technical knowledge, leadership, and community impact.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="assets/resume_operator.pdf" download="resume_operator.pdf" class="elegant-btn cyan">
+                            <span class="btn-text">DOWNLOAD CV</span>
+                            <span class="btn-line"></span>
+                        </a>
+                        <a href="#projects" class="elegant-btn secondary">
+                            <span class="btn-text">VIEW REGISTRY</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual-area">
+                    <!-- Three.js 3D Viewport container for Humanoid Robot -->
+                    <div class="canvas-3d-wrapper">
+                        <div id="canvas-3d-container"></div>
+                        <div class="tech-labels">
+                            <span class="label-item top-left">ROBOTIC_NODE: PROTOTYPE_v3</span>
+                            <span class="label-item bottom-right">FACE TRACKING: ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION WITH PROFILE PHOTO -->
+        <section id="about" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">01 /</span>
+                <h2 class="section-title">COGNITIVE ARCHITECTURE</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="about-flex">
+                <!-- Personal Photo Frame -->
+                <div class="photo-frame-container">
+                    <div class="photo-frame">
+                        <img src="assets/personal_photo.jpg" alt="Personal Profile Photo" class="personal-photo">
+                        <div class="photo-glow"></div>
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                    </div>
+                </div>
+
+                <div class="about-card-elegant text-main-card">
+                    <h3>UNIVERSITY UNDERGRADUATE</h3>
+                    <p>
+                       I possess project management skills that enable me to plan, coordinate, and execute tasks efficiently while working with teams and meeting deadlines. Alongside my academic journey, I have a keen interest in business and entrepreneurship, constantly seeking opportunities to strengthen strategic thinking and gain real-world experience.
+
+                    </p>
+                    <p>
+                       I am passionate about continuous learning, adaptability, and contributing meaningfully to every environment I am part of, with the goal of growing into a well-rounded professional who can create positive impact.
+                    </p>
+                    
+                    <div class="spec-matrix-grid-elegant">
+                        <div class="spec-cell">
+                            <span class="cell-lbl">LENTENCY ACCURACY</span>
+                            <span class="cell-num-elegant">99.8%</span>
+                        </div>
+                        <div class="spec-cell">
+                            <span class="cell-lbl">RENDER STABILITY</span>
+                            <span class="cell-num-elegant">60FPS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUALIFICATIONS SECTION -->
+        <section id="qualifications" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">02 /</span>
+                <h2 class="section-title">ACADEMIC & QUALIFICATION SCHEMA</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="qualifications-timeline">
+                <!-- Timeline Track line -->
+                <div class="timeline-track"></div>
+
+                <!-- Card 1 -->
+                <div class="timeline-node">
+                    <div class="timeline-marker"><span class="dot"></span></div>
+                    <div class="timeline-card-wrapper">
+                        <div class="timeline-header">
+                            <span class="date">2018 - 2022</span>
+                            <h3 class="degree-title">B.S. COMPUTER SCIENCE & COMPUTER ENGINEERING</h3>
+                        </div>
+                        <span class="institution">Federal Poly-Tech Node</span>
+                        <p class="timeline-summary">
+                            Rigorous foundation in software structures, micro-controller logic, relational database models, and graphic rastering algorithms.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="timeline-node">
+                    <div class="timeline-marker"><span class="dot"></span></div>
+                    <div class="timeline-card-wrapper">
+                        <div class="timeline-header">
+                            <span class="date">2023</span>
+                            <h3 class="degree-title">FULL-STACK NODE SYSTEMS CERTIFICATION</h3>
+                        </div>
+                        <span class="institution">Advanced Web Systems Registry</span>
+                        <p class="timeline-summary">
+                            Intensive training modules centered on asynchronous service patterns, secure session validations, and SQL performance tuning.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="timeline-node">
+                    <div class="timeline-marker"><span class="dot"></span></div>
+                    <div class="timeline-card-wrapper">
+                        <div class="timeline-header">
+                            <span class="date">2025</span>
+                            <h3 class="degree-title">CREATIVE WEBGL & THREE.JS CERTIFICATE</h3>
+                        </div>
+                        <span class="institution">Interactive Media Guild</span>
+                        <p class="timeline-summary">
+                            Deep dive into 3D render pipelines, custom GLSL lighting shaders, camera matrices, and matrix mathematical animations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECS (SKILLS) SECTION -->
+        <section id="skills" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">03 /</span>
+                <h2 class="section-title">SYSTEM SPECIFICATIONS</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Skill Set 1 -->
+                <div class="skills-panel">
+                    <h3 class="panel-tag">FRONTEND STACK</h3>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>HTML5 / CSS3 / ES6 Javascript</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill cyan" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>Vite / Webpack Bundling</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill cyan" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Set 2 -->
+                <div class="skills-panel">
+                    <h3 class="panel-tag">BACKEND NODES</h3>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>NodeJS / Express Services</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill magenta" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>SQL Databases & Caching</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill magenta" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Set 3 -->
+                <div class="skills-panel">
+                    <h3 class="panel-tag">CREATIVE SPECIFICATIONS</h3>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>Three.js / WebGL / Canvas 2D</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill green" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-group">
+                        <div class="skill-info">
+                            <span>Vector SVG Animations</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill green" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK (PROJECTS) SECTION -->
+        <section id="projects" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">04 /</span>
+                <h2 class="section-title">OPERATIONS REGISTRY (PROJECTS)</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="projects-elegant-grid">
+                <!-- Project 1 -->
+                <article class="project-card-elegant">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <span class="project-num">[ REG_01 ]</span>
+                        <h3 class="project-title-elegant">PROJECT: NEURO_NODE</h3>
+                        <p class="project-desc-elegant">
+                            Multi-agent cognitive network running distributed pipelines on local server nodes with real-time process routing diagnostics.
+                        </p>
+                        <div class="project-meta-elegant">
+                            <span class="badge">NodeJS</span>
+                            <span class="badge">WebSockets</span>
+                            <span class="badge">Python</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link-btn">CODE DECK</a>
+                            <a href="#" class="project-link-btn primary">LIVE DEMO</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card-elegant">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <span class="project-num">[ REG_02 ]</span>
+                        <h3 class="project-title-elegant">PROJECT: CHIP_OS</h3>
+                        <p class="project-desc-elegant">
+                            Virtual desktop system in the browser simulating vintage cybernetic command shells, including functional disk nodes.
+                        </p>
+                        <div class="project-meta-elegant">
+                            <span class="badge">HTML5 Canvas</span>
+                            <span class="badge">CSS3 Variables</span>
+                            <span class="badge">ES6</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link-btn">CODE DECK</a>
+                            <a href="#" class="project-link-btn primary">LIVE DEMO</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card-elegant">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <span class="project-num">[ REG_03 ]</span>
+                        <h3 class="project-title-elegant">PROJECT: VECTOR_NET</h3>
+                        <p class="project-desc-elegant">
+                            Distributed search algorithm running client-side node clusters to map vector spaces without centralized databases.
+                        </p>
+                        <div class="project-meta-elegant">
+                            <span class="badge">TypeScript</span>
+                            <span class="badge">WebRTC</span>
+                            <span class="badge">Vector Indices</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link-btn">CODE DECK</a>
+                            <a href="#" class="project-link-btn primary">LIVE DEMO</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">05 /</span>
+                <h2 class="section-title">ESTABLISH COMMS</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="contact-split">
+                <div class="contact-form-area">
+                    <form id="comms-form" class="elegant-form">
+                        <div class="form-row-elegant">
+                            <div class="form-group-elegant">
+                                <label for="caller-id">CALLER IDENTITY</label>
+                                <input type="text" id="caller-id" required placeholder="GUEST_USER">
+                                <span class="input-focus-line"></span>
+                            </div>
+                            <div class="form-group-elegant">
+                                <label for="caller-node">RETURN ADDRESS</label>
+                                <input type="email" id="caller-node" required placeholder="user@node.net">
+                                <span class="input-focus-line"></span>
+                            </div>
+                        </div>
+                        <div class="form-group-elegant">
+                            <label for="caller-payload">MESSAGE PAYLOAD</label>
+                            <textarea id="caller-payload" rows="5" required placeholder="Establish secure neural connection or request specifications..."></textarea>
+                            <span class="input-focus-line"></span>
+                        </div>
+                        <button type="submit" class="elegant-btn cyan block">
+                            <span class="btn-text">TRANSMIT DATA PACKETS</span>
+                            <span class="btn-line"></span>
+                        </button>
+                    </form>
+
+                    <!-- Submit status display -->
+                    <div class="transmission-status-panel hidden" id="transmit-status">
+                        <div class="loading-ring-wrapper">
+                            <div class="spinning-circle"></div>
+                        </div>
+                        <div class="status-output" id="status-output">
+                            INITIALIZING TRANSMISSION...
+                        </div>
+                        <button class="elegant-btn secondary sm hidden" id="btn-close-status" type="button">CLOSE NODE</button>
+                    </div>
+                </div>
+
+                <div class="contact-specs-area">
+                    <h3 class="panel-tag">CONNECTED SUBNETS</h3>
+                    <div class="subnet-list">
+                        <div class="subnet-node">
+                            <span class="node-label">SECURE_MAIL</span>
+                            <a href="mailto:operator@neural.net" class="node-link">operator@neural.net</a>
+                        </div>
+                        <div class="subnet-node">
+                            <span class="node-label">GITHUB_SUBNET</span>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="node-link">github.com/sys-operator</a>
+                        </div>
+                        <div class="subnet-node">
+                            <span class="node-label">LINKEDIN_NETWORK</span>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="node-link">linkedin.com/in/operator</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-elegant">
+        <span class="copy-text">SYS.CORE // DESIGNED & DEVELOPED AS DECK PORTFOLIO</span>
+        
+        <!-- Social links in Footer: FB, IG, LinkedIn, GitHub -->
+        <div class="footer-socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+            </a>
+        </div>
+        
+        <span class="ver-text">BUILD: v3.12_ROBO_PRO</span>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
