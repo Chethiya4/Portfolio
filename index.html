@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChethiyaLIVE</title>
-    <meta name="description" content="Personal portfolio of a creative full-stack engineer. Interactive 3D robot head-tracking, CV download, qualifications timeline, and projects.">
+    <title>ChethiyaLIVE | Full Stack Engineer & Portfolio</title>
+    <meta name="description" content="Personal portfolio of a creative full-stack engineer. Interactive 3D robot head-tracking, CV download, qualifications timeline, and projects management.">
     <!-- Google Fonts: Outfit (Primary & Headers), Share Tech Mono (Tech Accents) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
             <a href="#qualifications" class="nav-item">ACADEMICS</a>
             <a href="#skills" class="nav-item">SPECS</a>
             <a href="#projects" class="nav-item">WORK</a>
+            <a href="#admin" class="nav-item">ADMIN</a>
             <a href="#contact" class="nav-item">COMMS</a>
         </nav>
         <div class="nav-controls">
@@ -82,7 +83,7 @@
             <div class="hero-grid">
                 <div class="hero-text-area">
                     <div class="hero-tag">[ OPERATOR // SYSTEM PROFILE ]</div>
-                    <h1 class="hero-heading">Undergraduate at   <span class="text-glow-cyan">University of Sri Jayewardenepura</span> </h1>
+                    <h1 class="hero-heading">Undergraduate at <span class="text-glow-cyan">University of Sri Jayewardenepura</span></h1>
                     <p class="hero-desc">
                         I am an undergraduate at University of Sri Jayewardenepura with a strong enthusiasm for technology, innovation, and professional growth. As an IEEE volunteer, I actively engage in collaborative initiatives, events, and projects that foster technical knowledge, leadership, and community impact.
                     </p>
@@ -134,12 +135,7 @@
                     <h3>UNIVERSITY UNDERGRADUATE</h3>
                     <p>
                     I'm an undergraduate at the University of Sri Jayewardenepura with a passion for technology, software development, and problem-solving. I currently serve as the Vice Chairperson of the IEEE Computer Society Student Chapter and as a Committee Member of the Computer Science Association. I'm always eager to learn new technologies, collaborate on innovative projects, and contribute to the tech community.
-  
-                    
                     </p>
-                    
-                    
-                    
                 </div>
             </div>
         </section>
@@ -161,7 +157,7 @@
                     <div class="timeline-marker"><span class="dot"></span></div>
                     <div class="timeline-card-wrapper">
                         <div class="timeline-header">
-                            <span class="date">20225</span>
+                            <span class="date">2025</span>
                             <h3 class="degree-title">Bsc Physical Science ICT</h3>
                         </div>
                         <span class="institution">Undergraduate</span>
@@ -170,8 +166,6 @@
                         </p>
                     </div>
                 </div>
-
-               
             </div>
         </section>
 
@@ -221,7 +215,7 @@
                     </div>
                     <div class="skill-bar-group">
                         <div class="skill-info">
-                            <span>SQL Databases & Caching</span>
+                            <span>SQL & MongoDB Databases</span>
                             <span>75%</span>
                         </div>
                         <div class="skill-bar-track">
@@ -229,8 +223,6 @@
                         </div>
                     </div>
                 </div>
-
-                
             </div>
         </section>
 
@@ -242,36 +234,77 @@
                 <div class="line"></div>
             </div>
 
-            <div class="projects-elegant-grid">
-                <!-- Project 1 -->
-                <article class="project-card-elegant">
-                    <div class="card-glow"></div>
-                    <div class="card-inner">
-                        <span class="project-num">[ REG_01 ]</span>
-                        <h3 class="project-title-elegant">PROJECT: Student Record Manager</h3>
-                        <p class="project-desc-elegant">
-                            
-                        </p>
-                        <div class="project-meta-elegant">
-                            <span class="badge">JAVA</span>
-                           
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/Chethiya4/Student--record-manager.git" class="project-link-btn">CODE DECK</a>
-                            <a href="#" class="project-link-btn primary">LIVE DEMO</a>
-                        </div>
-                    </div>
-                </article>
+            <!-- Dynamic Project Grid loaded from MongoDB / REST API -->
+            <div id="projects-grid" class="projects-elegant-grid">
+                <!-- Projects rendered dynamically by script.js -->
+            </div>
+        </section>
 
-                
-               
+        <!-- ADMIN (SYSTEM CONTROL NODE) SECTION -->
+        <section id="admin" class="page-section">
+            <div class="section-divider">
+                <span class="section-num">05 /</span>
+                <h2 class="section-title">SYSTEM ADMIN NODE (CRUD MANAGER)</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="admin-layout-cyber">
+                <!-- Form Card -->
+                <div class="about-card-elegant admin-card-cyber">
+                    <h3 class="panel-tag" id="form-card-title">ADD / UPDATE PROJECT NODE</h3>
+                    <form id="project-form" class="elegant-form">
+                        <input type="hidden" id="project-id" value="">
+
+                        <div class="form-group-elegant">
+                            <label for="project-title">PROJECT TITLE</label>
+                            <input type="text" id="project-title" required placeholder="e.g. University Resource Management System">
+                            <span class="input-focus-line"></span>
+                        </div>
+
+                        <div class="form-group-elegant">
+                            <label for="project-desc">DESCRIPTION</label>
+                            <textarea id="project-desc" rows="4" required placeholder="Short project description..."></textarea>
+                            <span class="input-focus-line"></span>
+                        </div>
+
+                        <div class="form-group-elegant">
+                            <label for="project-tech">TECHNOLOGIES (COMMA SEPARATED)</label>
+                            <input type="text" id="project-tech" placeholder="React, Express, MongoDB, Node.js">
+                            <span class="input-focus-line"></span>
+                        </div>
+
+                        <div class="form-group-elegant">
+                            <label for="project-link">PROJECT LINK / REPOSITORY</label>
+                            <input type="url" id="project-link" placeholder="https://github.com/Chethiya4/project">
+                            <span class="input-focus-line"></span>
+                        </div>
+
+                        <div class="admin-form-actions">
+                            <button type="submit" class="elegant-btn cyan" id="btn-save-project">
+                                <span class="btn-text">SAVE PROJECT</span>
+                                <span class="btn-line"></span>
+                            </button>
+                            <button type="button" class="elegant-btn secondary" id="btn-reset-form">
+                                <span class="btn-text">RESET FORM</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Admin Projects List Container -->
+                <div class="about-card-elegant admin-card-cyber">
+                    <h3 class="panel-tag">REGISTERED DATABASE PROJECTS</h3>
+                    <div id="admin-projects-list" class="admin-projects-list-cyber">
+                        <!-- Loaded dynamically by script.js -->
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="page-section">
             <div class="section-divider">
-                <span class="section-num">05 /</span>
+                <span class="section-num">06 /</span>
                 <h2 class="section-title">ESTABLISH COMMS</h2>
                 <div class="line"></div>
             </div>
@@ -319,15 +352,15 @@
                     <div class="subnet-list">
                         <div class="subnet-node">
                             <span class="node-label">SECURE_MAIL</span>
-                            <a href="mailto:operator@neural.net" class="node-link">Chethiyasamaradiwakara@gmail.com</a>
+                            <a href="mailto:Chethiyasamaradiwakara@gmail.com" class="node-link">Chethiyasamaradiwakara@gmail.com</a>
                         </div>
                         <div class="subnet-node">
                             <span class="node-label">GITHUB_SUBNET</span>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="node-link">https://github.com/Chethiya4</a>
+                            <a href="https://github.com/Chethiya4" target="_blank" rel="noopener noreferrer" class="node-link">https://github.com/Chethiya4</a>
                         </div>
                         <div class="subnet-node">
                             <span class="node-label">LINKEDIN_NETWORK</span>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="node-link">https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/</a>
+                            <a href="https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/" target="_blank" rel="noopener noreferrer" class="node-link">https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/</a>
                         </div>
                     </div>
                 </div>
@@ -336,32 +369,35 @@
 
     </main>
 
+    <!-- Cyber Toast Notification -->
+    <div id="toast-cyber" class="toast-cyber hidden"></div>
+
     <!-- Footer -->
     <footer class="footer-elegant">
         <span class="copy-text">SYS.CORE // DESIGNED & DEVELOPED AS DECK PORTFOLIO</span>
         
         <!-- Social links in Footer: FB, IG, LinkedIn, GitHub -->
         <div class="footer-socials">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+            <a href="https://www.facebook.com/chethiya.samaradiwakara.2025/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                 </svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+            <a href="https://www.instagram.com/chethiy_a/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                 </svg>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+            <a href="https://github.com/Chethiya4" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                 </svg>

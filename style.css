@@ -1049,3 +1049,148 @@ body {
         padding: 20px;
     }
 }
+
+/* ==========================================================================
+   SYSTEM ADMIN NODE (CYBERNETIC CRUD STYLES)
+   ========================================================================== */
+
+.admin-layout-cyber {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.admin-card-cyber {
+    margin-bottom: 25px;
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.admin-projects-list-cyber {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.admin-project-item-cyber {
+    background: rgba(14, 16, 30, 0.6);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-project-item-cyber:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan-glow);
+}
+
+.admin-project-info-cyber {
+    flex: 1;
+}
+
+.admin-project-title-cyber {
+    font-family: var(--font-primary);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.admin-project-desc-cyber {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.admin-project-techs-cyber {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tech-badge-cyber {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+.admin-project-actions-cyber {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-cyber-action {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-cyber-edit {
+    background: rgba(0, 229, 255, 0.15);
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+}
+
+.btn-cyber-edit:hover {
+    background: var(--cyan);
+    color: #000;
+    box-shadow: 0 0 10px var(--cyan);
+}
+
+.btn-cyber-delete {
+    background: rgba(255, 0, 102, 0.15);
+    color: var(--magenta);
+    border: 1px solid var(--magenta);
+}
+
+.btn-cyber-delete:hover {
+    background: var(--magenta);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+}
+
+.toast-cyber {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #0d0f1c;
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 20px var(--cyan-glow);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-cyber.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
