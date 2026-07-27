@@ -680,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simulate AI Bot Response after short delay
             setTimeout(() => {
                 const responses = [
-                    "Hello! I am Chethiya's AI assistant powered by GPT-4. How can I help you explore this portfolio today?",
+                    "Hello! I am Chethiya's AI Assistant. How can I help you explore this portfolio today?",
                     "Great query! Chethiya is a Full Stack Engineer specializing in React, Node.js, Express, and MongoDB.",
                     "You can check out the Operations Registry section to view active projects or manage them in the Admin Node!",
                     "Transmission received! Let me know if you need CV details or contact links."
