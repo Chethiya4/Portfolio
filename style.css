@@ -1072,28 +1072,46 @@ spline-viewer::part(logo) {
 }
 
 @media (max-width: 768px) {
+    .page-container {
+        padding: 125px 20px 40px;
+    }
+
     .navbar {
-        padding: 12px 16px;
-        flex-wrap: wrap;
-        gap: 10px;
-        background: rgba(1, 4, 9, 0.88);
+        padding: 10px 16px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        row-gap: 8px;
+        align-items: center;
+        background: rgba(1, 4, 9, 0.94);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-soft);
     }
 
     .nav-logo {
+        grid-column: 1;
         gap: 8px;
     }
 
     .logo-text {
         font-size: 0.85rem;
     }
-    
-    .nav-links {
-        display: flex;
+
+    .nav-controls {
+        grid-column: 2;
         gap: 10px;
+    }
+
+    .header-socials {
+        display: none;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: 8px;
         overflow-x: auto;
-        max-width: 100%;
+        width: 100%;
         padding-bottom: 4px;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -1103,44 +1121,49 @@ spline-viewer::part(logo) {
     .nav-links::-webkit-scrollbar {
         display: none;
     }
-    
+
     .nav-item {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
+        font-weight: 600;
         white-space: nowrap;
-        padding: 5px 12px;
-        background: rgba(0, 191, 255, 0.06);
-        border: 1px solid rgba(0, 191, 255, 0.15);
-        border-radius: 14px;
+        padding: 6px 14px;
+        background: rgba(0, 191, 255, 0.08);
+        border: 1px solid rgba(0, 191, 255, 0.2);
+        border-radius: 16px;
+        color: var(--text-primary);
+        flex-shrink: 0;
     }
 
-    .nav-controls {
-        gap: 10px;
+    .nav-item:hover,
+    .nav-item:active {
+        background: rgba(0, 191, 255, 0.25);
+        border-color: var(--cyan);
+        color: var(--cyan);
     }
 
-    .header-socials {
-        display: none;
-    }
-    
     .hero-heading {
         font-size: clamp(1.8rem, 6.5vw, 2.5rem);
         line-height: 1.25;
     }
-    
+
     .canvas-3d-wrapper {
         max-width: 100%;
         height: 380px;
         touch-action: pan-y;
     }
-    
-    /* Mobile AI Chatbot Smooth Positioning */
+
+    /* Mobile AI Chatbot Centered Positioning */
     .ai-assistant-container {
-        bottom: 16px;
-        right: 16px;
+        position: fixed !important;
+        bottom: 16px !important;
+        right: 16px !important;
+        z-index: 1000 !important;
+        transform: none !important;
     }
 
     .floating-ai-button {
-        width: 56px;
-        height: 56px;
+        width: 54px;
+        height: 54px;
     }
 
     .floating-ai-button .ai-btn-icon svg {
@@ -1149,12 +1172,14 @@ spline-viewer::part(logo) {
     }
 
     .ai-chat-interface {
-        position: fixed;
-        bottom: 82px;
-        left: 16px;
-        right: 16px;
-        width: auto;
-        max-width: none;
+        position: fixed !important;
+        bottom: 80px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        max-width: 440px !important;
+        margin: 0 auto !important;
+        transform-origin: bottom center !important;
     }
 
     .ai-chat-card {
@@ -1173,7 +1198,7 @@ spline-viewer::part(logo) {
     .ai-chat-controls {
         padding: 10px 12px 14px;
     }
-    
+
     .about-card-elegant,
     .timeline-card-wrapper,
     .skills-panel,
@@ -1188,7 +1213,7 @@ spline-viewer::part(logo) {
     .form-row-elegant {
         grid-template-columns: 1fr;
     }
-    
+
     .footer-elegant {
         flex-direction: column;
         gap: 15px;
@@ -1199,7 +1224,12 @@ spline-viewer::part(logo) {
 
 @media (max-width: 480px) {
     .page-container {
-        padding: 130px 14px 30px;
+        padding: 135px 14px 30px;
+    }
+
+    .nav-item {
+        font-size: 0.68rem;
+        padding: 5px 10px;
     }
 
     .canvas-3d-wrapper {
