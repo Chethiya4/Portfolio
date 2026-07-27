@@ -427,122 +427,122 @@
             </div>
             <div class="ai-btn-ping"></div>
         </button>
+    </div>
 
-        <!-- Chat Interface Card -->
-        <div class="ai-chat-interface hidden" id="ai-chat-box">
-            <div class="ai-chat-card">
-                <!-- Header -->
-                <div class="ai-chat-header">
-                    <div class="ai-status">
-                        <div class="ai-pulse-dot"></div>
-                        <span class="ai-status-title">AI Assistant</span>
-                    </div>
-                    <div class="ai-header-badges">
-                        <span class="badge-gpt">GPT-4</span>
-                        <span class="badge-pro">Pro</span>
-                        <button class="ai-close-btn" id="ai-chat-close" aria-label="Close Chat">
+    <!-- Chat Interface Card -->
+    <div class="ai-chat-interface hidden" id="ai-chat-box">
+        <div class="ai-chat-card">
+            <!-- Header -->
+            <div class="ai-chat-header">
+                <div class="ai-status">
+                    <div class="ai-pulse-dot"></div>
+                    <span class="ai-status-title">AI Assistant</span>
+                </div>
+                <div class="ai-header-badges">
+                    <span class="badge-gpt">GPT-4</span>
+                    <span class="badge-pro">Pro</span>
+                    <button class="ai-close-btn" id="ai-chat-close" aria-label="Close Chat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Section & Messages Area -->
+            <div class="ai-input-area">
+                <div class="ai-messages-history" id="ai-chat-history"></div>
+                <textarea 
+                    id="ai-user-input"
+                    rows="4" 
+                    placeholder="What would you like to explore today? Ask anything, share ideas, or request assistance..."
+                    maxlength="2000"
+                ></textarea>
+                <div class="ai-input-gradient-overlay"></div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="ai-chat-controls">
+                <div class="ai-controls-row">
+                    <div class="ai-tools-group">
+                        <div class="ai-attachments-box">
+                            <!-- Paperclip -->
+                            <button class="ai-tool-btn" title="Upload files" aria-label="Upload files">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.58a2 4 0 0 1-2.83-2.83l8.49-8.48"></path>
+                                </svg>
+                                <span class="ai-tooltip">Upload files</span>
+                            </button>
+                            <!-- Link -->
+                            <button class="ai-tool-btn" title="Web link" aria-label="Web link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                                <span class="ai-tooltip">Web link</span>
+                            </button>
+                            <!-- Code -->
+                            <button class="ai-tool-btn" title="Code repo" aria-label="Code repo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                                <span class="ai-tooltip">Code repo</span>
+                            </button>
+                            <!-- Design Figma -->
+                            <button class="ai-tool-btn" title="Design file" aria-label="Design file">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117v-6.038H8.148zm7.704 0c-2.476 0-4.49 2.015-4.49 4.49s2.014 4.49 4.49 4.49 4.49-2.015 4.49-4.49-2.014-4.49-4.49-4.49zm0 7.509c-1.665 0-3.019-1.355-3.019-3.019s1.355-3.019 3.019-3.019 3.019 1.354 3.019 3.019-1.354 3.019-3.019 3.019zM8.148 24c-2.476 0-4.49-2.015-4.49-4.49s2.014-4.49 4.49-4.49h4.588V24H8.148zm3.117-1.471V16.49H8.148c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.02 3.019 3.02h3.117z"></path>
+                                </svg>
+                                <span class="ai-tooltip">Design file</span>
+                            </button>
+                        </div>
+
+                        <!-- Voice Button -->
+                        <button class="ai-tool-btn voice-btn" title="Voice input" aria-label="Voice input">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 6 6 18"></path>
-                                <path d="m6 6 12 12"></path>
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" x2="12" y1="19" y2="22"></line>
+                            </svg>
+                            <span class="ai-tooltip">Voice input</span>
+                        </button>
+                    </div>
+
+                    <div class="ai-send-group">
+                        <div class="ai-char-counter">
+                            <span id="ai-char-count">0</span>/<span class="max-chars">2000</span>
+                        </div>
+
+                        <!-- Send Button -->
+                        <button class="ai-send-btn" id="ai-btn-send" aria-label="Send Message">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                             </svg>
                         </button>
                     </div>
                 </div>
 
-                <!-- Input Section & Messages Area -->
-                <div class="ai-input-area">
-                    <div class="ai-messages-history" id="ai-chat-history"></div>
-                    <textarea 
-                        id="ai-user-input"
-                        rows="4" 
-                        placeholder="What would you like to explore today? Ask anything, share ideas, or request assistance..."
-                        maxlength="2000"
-                    ></textarea>
-                    <div class="ai-input-gradient-overlay"></div>
-                </div>
-
-                <!-- Controls Section -->
-                <div class="ai-chat-controls">
-                    <div class="ai-controls-row">
-                        <div class="ai-tools-group">
-                            <div class="ai-attachments-box">
-                                <!-- Paperclip -->
-                                <button class="ai-tool-btn" title="Upload files" aria-label="Upload files">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.58a2 4 0 0 1-2.83-2.83l8.49-8.48"></path>
-                                    </svg>
-                                    <span class="ai-tooltip">Upload files</span>
-                                </button>
-                                <!-- Link -->
-                                <button class="ai-tool-btn" title="Web link" aria-label="Web link">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                                    </svg>
-                                    <span class="ai-tooltip">Web link</span>
-                                </button>
-                                <!-- Code -->
-                                <button class="ai-tool-btn" title="Code repo" aria-label="Code repo">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="16 18 22 12 16 6"></polyline>
-                                        <polyline points="8 6 2 12 8 18"></polyline>
-                                    </svg>
-                                    <span class="ai-tooltip">Code repo</span>
-                                </button>
-                                <!-- Design Figma -->
-                                <button class="ai-tool-btn" title="Design file" aria-label="Design file">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117v-6.038H8.148zm7.704 0c-2.476 0-4.49 2.015-4.49 4.49s2.014 4.49 4.49 4.49 4.49-2.015 4.49-4.49-2.014-4.49-4.49-4.49zm0 7.509c-1.665 0-3.019-1.355-3.019-3.019s1.355-3.019 3.019-3.019 3.019 1.354 3.019 3.019-1.354 3.019-3.019 3.019zM8.148 24c-2.476 0-4.49-2.015-4.49-4.49s2.014-4.49 4.49-4.49h4.588V24H8.148zm3.117-1.471V16.49H8.148c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.02 3.019 3.02h3.117z"></path>
-                                    </svg>
-                                    <span class="ai-tooltip">Design file</span>
-                                </button>
-                            </div>
-
-                            <!-- Voice Button -->
-                            <button class="ai-tool-btn voice-btn" title="Voice input" aria-label="Voice input">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                                    <line x1="12" x2="12" y1="19" y2="22"></line>
-                                </svg>
-                                <span class="ai-tooltip">Voice input</span>
-                            </button>
-                        </div>
-
-                        <div class="ai-send-group">
-                            <div class="ai-char-counter">
-                                <span id="ai-char-count">0</span>/<span class="max-chars">2000</span>
-                            </div>
-
-                            <!-- Send Button -->
-                            <button class="ai-send-btn" id="ai-btn-send" aria-label="Send Message">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                </svg>
-                            </button>
-                        </div>
+                <!-- Footer Info -->
+                <div class="ai-footer-info">
+                    <div class="ai-info-shortcut">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>Press <kbd>Shift + Enter</kbd> for new line</span>
                     </div>
 
-                    <!-- Footer Info -->
-                    <div class="ai-footer-info">
-                        <div class="ai-info-shortcut">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                            </svg>
-                            <span>Press <kbd>Shift + Enter</kbd> for new line</span>
-                        </div>
-
-                        <div class="ai-system-status">
-                            <div class="status-dot"></div>
-                            <span>All systems operational</span>
-                        </div>
+                    <div class="ai-system-status">
+                        <div class="status-dot"></div>
+                        <span>All systems operational</span>
                     </div>
                 </div>
-                <div class="ai-floating-overlay"></div>
             </div>
+            <div class="ai-floating-overlay"></div>
         </div>
     </div>
 
