@@ -60,14 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. INTERACTIVE SOUND EVENTS (Tactile UI Feedback)
     // ----------------------------------------------------
     function setupSoundEvents() {
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         const interactiveElements = document.querySelectorAll('a, button, input, textarea, .project-card-elegant, .admin-project-item-cyber');
         interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                playHoverSound();
-            });
+            if (!isTouchDevice) {
+                el.addEventListener('mouseenter', () => {
+                    playHoverSound();
+                }, { passive: true });
+            }
             el.addEventListener('click', () => {
                 playClickSound();
-            });
+            }, { passive: true });
         });
     }
     setupSoundEvents();
@@ -81,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Function to strip Spline watermark / logo from shadow DOM
         const stripSplineLogo = () => {
             if (splineViewer.shadowRoot) {
-                // 1. Inject override style into ShadowRoot
                 if (!splineViewer.shadowRoot.querySelector('#hide-spline-logo-style')) {
                     const style = document.createElement('style');
                     style.id = 'hide-spline-logo-style';
@@ -95,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     splineViewer.shadowRoot.appendChild(style);
                 }
-                // 2. Direct element removal
                 const logoEl = splineViewer.shadowRoot.querySelector('#logo, #spline-logo, a[href*="spline.design"], a[href*="spline"]');
                 if (logoEl) {
                     logoEl.remove();
@@ -105,8 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stripSplineLogo();
         splineViewer.addEventListener('load', stripSplineLogo);
-        const intervalId = setInterval(stripSplineLogo, 100);
-        setTimeout(() => clearInterval(intervalId), 6000);
+        if (window.MutationObserver && splineViewer.shadowRoot) {
+            const observer = new MutationObserver(stripSplineLogo);
+            observer.observe(splineViewer.shadowRoot, { childList: true, subtree: true });
+        } else {
+            const intervalId = setInterval(stripSplineLogo, 250);
+            setTimeout(() => clearInterval(intervalId), 3000);
+        }
     }
 
 
@@ -366,16 +372,25 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
 
-        // Re-attach card spotlight hover effects
+        // Re-attach card spotlight hover effects with cached rect bounds
         const projectCards = document.querySelectorAll('.project-card-elegant');
         projectCards.forEach(card => {
+            let rect = null;
+            card.addEventListener('mouseenter', () => {
+                rect = card.getBoundingClientRect();
+            }, { passive: true });
+
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
+                if (!rect) rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
-            });
+            }, { passive: true });
+
+            card.addEventListener('mouseleave', () => {
+                rect = null;
+            }, { passive: true });
         });
     }
 
