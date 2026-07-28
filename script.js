@@ -12,7 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ? '/api/projects'
         : 'http://localhost:5000/api/projects';
 
+    const API_LINKEDIN_URL = window.location.origin.includes('http')
+        ? '/api/linkedin-posts'
+        : 'http://localhost:5000/api/linkedin-posts';
+
+    const API_LINKEDIN_CONFIG_URL = window.location.origin.includes('http')
+        ? '/api/linkedin-config'
+        : 'http://localhost:5000/api/linkedin-config';
+
     const STORAGE_KEY = 'chethiya_projects_db';
+    const STORAGE_KEY_LINKEDIN = 'chethiya_linkedin_posts_db';
 
     const DEFAULT_PROJECTS = [
         {
@@ -38,7 +47,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const DEFAULT_LINKEDIN_POSTS = [
+        {
+            _id: 'ln_real_01',
+            authorName: 'Chethiya Samaradiwakara',
+            authorTitle: 'Undergraduate at USJ | Vice Chairperson IEEE CS',
+            authorAvatar: 'personal_photo.jpg',
+            postText: 'Excited for this opportunity to learn, lead, and grow alongside an amazing team. ✨ Strong leadership grows through collaboration. Congratulations to Mr. Chethiya Samaradiwakara on being appointed as the Vice Chairperson of the IEEE Computer Society Student Branch Chapter 2026/27 of the University of Sri Jayewardenepura. Wishing you a successful journey of support, teamwork, and dedication in shaping the future of our community. 🌟 #IEEE #USJ #IEEESB #CS',
+            postImage: '',
+            postLink: 'https://www.linkedin.com/posts/chethiya-samaradiwakara-11a816322_excited-for-this-opportunity-to-learn-lead-share-7456313010702245888-Iwo6/',
+            embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7456313010702245888',
+            likesCount: 21,
+            commentsCount: 1,
+            timestamp: new Date('2026-07-20T10:00:00Z').toISOString()
+        },
+        {
+            _id: 'ln_real_02',
+            authorName: 'Chethiya Samaradiwakara',
+            authorTitle: 'Undergraduate at USJ | Vice Chairperson IEEE CS',
+            authorAvatar: 'personal_photo.jpg',
+            postText: 'Grateful to have been part of IEEE EXCELLENCIA. ✨ It was a great opportunity to join this special event, meet fellow IEEE members, and be part of an inspiring atmosphere. Every experience like this is a reminder of the value of being involved in such an amazing community. Looking forward to creating more memories, building new connections, and taking part in many more IEEE events in the future. 🌐 #IEEE #IEEEXCELLENCIA #USJ #ComputerScience',
+            postImage: '',
+            postLink: 'https://www.linkedin.com/posts/chethiya-samaradiwakara-11a816322_ieee-ugcPost-7485775607662800896-DtJv/',
+            embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7485775607662800896',
+            likesCount: 35,
+            commentsCount: 5,
+            timestamp: new Date('2026-07-15T10:00:00Z').toISOString()
+        },
+        {
+            _id: 'ln_real_03',
+            authorName: 'Chethiya Samaradiwakara',
+            authorTitle: 'Undergraduate at USJ | Vice Chairperson IEEE CS',
+            authorAvatar: 'personal_photo.jpg',
+            postText: 'Glad to be part of the Computer Science Association Board 2026/2027. 💻 Looking ahead with enthusiasm to work with the team, contribute to impactful initiatives, and support our student community. Excited for the journey ahead! 🎓 #CSA #ComputerScience #USJ #Leadership',
+            postImage: '',
+            postLink: 'https://www.linkedin.com/posts/chethiya-samaradiwakara-11a816322_glad-to-be-part-of-the-computer-science-association-share-7425797608176046080-7PHA/',
+            embedUrl: 'https://www.linkedin.com/embed/feed/update/urn:li:share:7425797608176046080',
+            likesCount: 42,
+            commentsCount: 8,
+            timestamp: new Date('2026-07-10T10:00:00Z').toISOString()
+        }
+    ];
+
     let projectsState = [];
+    let linkedinState = [];
+    let linkedinConfigState = { widgetScript: '', mode: 'cards' };
 
     // DOM Elements for Projects & Admin Node
     const projectsGrid = document.getElementById('projects-grid');
@@ -54,6 +107,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSave = document.getElementById('btn-save-project');
     const btnReset = document.getElementById('btn-reset-form');
     const toastCyber = document.getElementById('toast-cyber');
+
+    // DOM Elements for LinkedIn Node
+    const linkedinGrid = document.getElementById('linkedin-grid');
+    const btnRefreshLinkedin = document.getElementById('btn-refresh-linkedin');
+
+    const adminLinkedinList = document.getElementById('admin-linkedin-list');
+    const linkedinForm = document.getElementById('linkedin-form');
+    const lnFormCardTitle = document.getElementById('ln-form-card-title');
+    const lnPostId = document.getElementById('ln-post-id');
+    const lnPostText = document.getElementById('ln-post-text');
+    const lnPostLink = document.getElementById('ln-post-link');
+    const lnPostImage = document.getElementById('ln-post-image');
+    const lnLikesCount = document.getElementById('ln-likes-count');
+    const lnCommentsCount = document.getElementById('ln-comments-count');
+    const btnSaveLnPost = document.getElementById('btn-save-ln-post');
+    const btnResetLnForm = document.getElementById('btn-reset-ln-form');
+
+    // Admin Tabs
+    const tabBtnProjects = document.getElementById('tab-btn-projects');
+    const tabBtnLinkedin = document.getElementById('tab-btn-linkedin');
+    const tabProjectsContent = document.getElementById('admin-tab-projects-content');
+    const tabLinkedinContent = document.getElementById('admin-tab-linkedin-content');
+
+    if (tabBtnProjects && tabBtnLinkedin) {
+        tabBtnProjects.addEventListener('click', () => {
+            tabBtnProjects.classList.add('active');
+            tabBtnLinkedin.classList.remove('active');
+            if (tabProjectsContent) tabProjectsContent.classList.remove('hidden');
+            if (tabLinkedinContent) tabLinkedinContent.classList.add('hidden');
+        });
+
+        tabBtnLinkedin.addEventListener('click', () => {
+            tabBtnLinkedin.classList.add('active');
+            tabBtnProjects.classList.remove('active');
+            if (tabLinkedinContent) tabLinkedinContent.classList.remove('hidden');
+            if (tabProjectsContent) tabProjectsContent.classList.add('hidden');
+        });
+    }
+
+    if (btnRefreshLinkedin) {
+        btnRefreshLinkedin.addEventListener('click', () => {
+            loadLinkedinPosts();
+            showCyberToast('LINKEDIN STREAM REFRESHED!');
+        });
+    }
 
 
     // ----------------------------------------------------
@@ -700,7 +798,302 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ----------------------------------------------------
+    // 10. LINKEDIN POST STREAM ENGINE & CONTROLLER
+    // ----------------------------------------------------
+    function getLocalLinkedinPosts() {
+        const data = localStorage.getItem(STORAGE_KEY_LINKEDIN);
+        if (!data) {
+            localStorage.setItem(STORAGE_KEY_LINKEDIN, JSON.stringify(DEFAULT_LINKEDIN_POSTS));
+            return DEFAULT_LINKEDIN_POSTS;
+        }
+        try { return JSON.parse(data); } catch { return DEFAULT_LINKEDIN_POSTS; }
+    }
+
+    function saveLocalLinkedinPosts(posts) {
+        localStorage.setItem(STORAGE_KEY_LINKEDIN, JSON.stringify(posts));
+    }
+
+    async function loadLinkedinPosts() {
+        try {
+            const response = await fetch(API_LINKEDIN_URL);
+            if (response.ok) {
+                linkedinState = await response.json();
+            } else {
+                throw new Error('API server returned non-OK status');
+            }
+        } catch (err) {
+            linkedinState = getLocalLinkedinPosts();
+        }
+
+        try {
+            const configResp = await fetch(API_LINKEDIN_CONFIG_URL);
+            if (configResp.ok) {
+                linkedinConfigState = await configResp.json();
+                if (lnWidgetCode && linkedinConfigState.widgetScript) {
+                    lnWidgetCode.value = linkedinConfigState.widgetScript;
+                }
+            }
+        } catch (err) {
+            console.log('LinkedIn Config load error:', err.message);
+        }
+
+        renderLinkedinFeed();
+        renderAdminLinkedinList();
+        setupSoundEvents();
+    }
+
+    function getLinkedinEmbedUrl(url) {
+        if (!url) return '';
+        if (url.includes('/embed/feed/update/')) return url;
+        const numMatch = url.match(/\d{18,20}/);
+        if (url.includes('ugcPost') && numMatch) {
+            return `https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:${numMatch[0]}`;
+        }
+        if (numMatch) {
+            return `https://www.linkedin.com/embed/feed/update/urn:li:share:${numMatch[0]}`;
+        }
+        return url;
+    }
+
+    function renderLinkedinFeed() {
+        if (!linkedinGrid) return;
+
+        if (linkedinState.length === 0) {
+            linkedinGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 40px 0;">
+                    [ NO LINKEDIN POSTS AVAILABLE IN STREAM ]
+                </div>
+            `;
+            return;
+        }
+
+        linkedinGrid.innerHTML = linkedinState.map(post => {
+            const embedSrc = post.embedUrl || (post.postLink ? getLinkedinEmbedUrl(post.postLink) : '');
+
+            return `
+                <div class="linkedin-white-card">
+                    <iframe src="${escapeHTML(embedSrc)}" height="590" width="100%" frameborder="0" allowfullscreen="" title="LinkedIn Live Post Embed"></iframe>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderAdminLinkedinList() {
+        if (!adminLinkedinList) return;
+
+        if (linkedinState.length === 0) {
+            adminLinkedinList.innerHTML = `
+                <div style="text-align: center; color: var(--text-secondary); padding: 20px 0;">
+                    [ NO LINKEDIN POSTS SAVED ]
+                </div>
+            `;
+            return;
+        }
+
+        adminLinkedinList.innerHTML = linkedinState.map(post => {
+            const timeAgo = formatRelativeTime(post.timestamp || post.createdAt);
+            const snippet = post.postText.length > 80 ? post.postText.substring(0, 80) + '...' : post.postText;
+
+            return `
+                <div class="admin-project-item-cyber" data-id="${post._id}">
+                    <div class="admin-project-info-cyber">
+                        <h4 class="admin-project-title-cyber">${escapeHTML(snippet)}</h4>
+                        <p class="admin-project-desc-cyber" style="font-family: var(--font-mono); font-size: 0.75rem;">
+                            Posted: ${escapeHTML(timeAgo)} | 👍 ${post.likesCount || 0} Likes | 💬 ${post.commentsCount || 0} Comments
+                        </p>
+                    </div>
+                    <div class="admin-project-actions-cyber">
+                        <button class="btn-cyber-action btn-cyber-edit" onclick="handleEditLinkedinPost('${post._id}')">EDIT</button>
+                        <button class="btn-cyber-action btn-cyber-delete" onclick="handleDeleteLinkedinPost('${post._id}')">DELETE</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function formatHashtags(text) {
+        if (!text) return '';
+        return text.replace(/#(\w+)/g, '<span class="linkedin-hashtag">#$1</span>');
+    }
+
+    function formatRelativeTime(dateStr) {
+        if (!dateStr) return 'Recently';
+        const date = new Date(dateStr);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffSecs = Math.floor(diffMs / 1000);
+        const diffMins = Math.floor(diffSecs / 60);
+        const diffHours = Math.floor(diffMins / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        if (diffDays > 30) return date.toLocaleDateString();
+        if (diffDays > 0) return `${diffDays}d ago`;
+        if (diffHours > 0) return `${diffHours}h ago`;
+        if (diffMins > 0) return `${diffMins}m ago`;
+        return 'Just now';
+    }
+
+    if (linkedinForm) {
+        linkedinForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = lnPostId ? lnPostId.value : '';
+            const postText = lnPostText.value.trim();
+            const postLink = lnPostLink.value.trim();
+            const postImage = lnPostImage ? lnPostImage.value.trim() : '';
+            const likesCount = parseInt(lnLikesCount.value) || 0;
+            const commentsCount = parseInt(lnCommentsCount.value) || 0;
+
+            if (!postText) {
+                showCyberToast('ENTER POST CONTENT!');
+                return;
+            }
+
+            const postData = {
+                authorName: 'Chethiya Samaradiwakara',
+                authorTitle: 'Undergraduate at USJ | Vice Chairperson IEEE CS',
+                authorAvatar: 'personal_photo.jpg',
+                postText,
+                postImage,
+                postLink: postLink || 'https://www.linkedin.com/in/chethiya-samaradiwakara-11a816322/',
+                likesCount,
+                commentsCount
+            };
+
+            if (id) {
+                await updateLinkedinPost(id, postData);
+            } else {
+                await createLinkedinPost(postData);
+            }
+        });
+    }
+
+    if (btnResetLnForm) {
+        btnResetLnForm.addEventListener('click', resetLinkedinForm);
+    }
+
+    function resetLinkedinForm() {
+        if (lnPostId) lnPostId.value = '';
+        if (lnPostImage) lnPostImage.value = '';
+        if (linkedinForm) linkedinForm.reset();
+        if (lnFormCardTitle) lnFormCardTitle.textContent = 'ADD / SHOWCASE LINKEDIN POST';
+        if (btnSaveLnPost) {
+            const btnText = btnSaveLnPost.querySelector('.btn-text');
+            if (btnText) btnText.textContent = 'SAVE LINKEDIN POST';
+        }
+    }
+
+    async function createLinkedinPost(postData) {
+        try {
+            const response = await fetch(API_LINKEDIN_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(postData)
+            });
+            if (response.ok) {
+                const created = await response.json();
+                linkedinState.unshift(created);
+                showCyberToast('LINKEDIN POST CREATED IN MONGODB!');
+            } else {
+                throw new Error('API failed');
+            }
+        } catch (err) {
+            const newMem = {
+                _id: 'ln_' + Date.now(),
+                ...postData,
+                timestamp: new Date().toISOString()
+            };
+            linkedinState.unshift(newMem);
+            saveLocalLinkedinPosts(linkedinState);
+            showCyberToast('LINKEDIN POST SAVED LOCALLY!');
+        }
+
+        renderLinkedinFeed();
+        renderAdminLinkedinList();
+        resetLinkedinForm();
+        setupSoundEvents();
+    }
+
+    async function updateLinkedinPost(id, postData) {
+        try {
+            const response = await fetch(`${API_LINKEDIN_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(postData)
+            });
+            if (response.ok) {
+                const updated = await response.json();
+                const idx = linkedinState.findIndex(p => p._id === id);
+                if (idx !== -1) linkedinState[idx] = updated;
+                showCyberToast('LINKEDIN POST UPDATED IN DATABASE!');
+            } else {
+                throw new Error('API failed');
+            }
+        } catch (err) {
+            const idx = linkedinState.findIndex(p => p._id === id);
+            if (idx !== -1) {
+                linkedinState[idx] = { ...linkedinState[idx], ...postData };
+                saveLocalLinkedinPosts(linkedinState);
+                showCyberToast('LINKEDIN POST UPDATED LOCALLY!');
+            }
+        }
+
+        renderLinkedinFeed();
+        renderAdminLinkedinList();
+        resetLinkedinForm();
+        setupSoundEvents();
+    }
+
+    async function deleteLinkedinPost(id) {
+        if (!confirm('CONFIRM DELETION OF TARGET LINKEDIN POST?')) return;
+        try {
+            const response = await fetch(`${API_LINKEDIN_URL}/${id}`, { method: 'DELETE' });
+            if (response.ok) {
+                linkedinState = linkedinState.filter(p => p._id !== id);
+                showCyberToast('LINKEDIN POST DELETED FROM DATABASE!');
+            } else {
+                throw new Error('API failed');
+            }
+        } catch (err) {
+            linkedinState = linkedinState.filter(p => p._id !== id);
+            saveLocalLinkedinPosts(linkedinState);
+            showCyberToast('LINKEDIN POST DELETED LOCALLY!');
+        }
+
+        renderLinkedinFeed();
+        renderAdminLinkedinList();
+        if (lnPostId && lnPostId.value === id) resetLinkedinForm();
+        setupSoundEvents();
+    }
+
+    window.handleEditLinkedinPost = function (id) {
+        const post = linkedinState.find(p => p._id === id);
+        if (!post) return;
+
+        if (lnPostId) lnPostId.value = post._id;
+        if (lnPostText) lnPostText.value = post.postText;
+        if (lnPostLink) lnPostLink.value = post.postLink || '';
+        if (lnPostImage) lnPostImage.value = post.postImage || '';
+        if (lnLikesCount) lnLikesCount.value = post.likesCount || 0;
+        if (lnCommentsCount) lnCommentsCount.value = post.commentsCount || 0;
+
+        if (lnFormCardTitle) lnFormCardTitle.textContent = 'UPDATE TARGET LINKEDIN POST';
+        if (btnSaveLnPost) {
+            const btnText = btnSaveLnPost.querySelector('.btn-text');
+            if (btnText) btnText.textContent = 'UPDATE POST';
+        }
+
+        if (linkedinForm) {
+            linkedinForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    window.handleDeleteLinkedinPost = function (id) {
+        deleteLinkedinPost(id);
+    };
+
     // Initialize App Data Load
     loadProjects();
+    loadLinkedinPosts();
 
 });
